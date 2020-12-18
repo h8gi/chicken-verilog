@@ -1,3 +1,4 @@
+(require-extension coops)
 (import (chicken irregex))
 
 (define (hello x) 12)
@@ -7,3 +8,7 @@
 
 (define (v/module name )
   `(module ,expr endmodule))
+
+
+
+(define-class <verilog-module> () ())
