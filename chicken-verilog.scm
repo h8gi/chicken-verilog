@@ -1,3 +1,4 @@
+(require-extension coops)
 (import (chicken irregex))
 
 (define (hello x) 12)
@@ -8,14 +9,25 @@
 (define (v/module name )
   `(module ,expr endmodule))
 
-(hello 12)
 
-(define-verilog-module uart
-  #:input clk rst rx
-  #:output hello (reg [7 0] foo)
-  (parameter x 9600)
-  (parameter y 10000)
-  (reg )
-)
 
-mediocore
+(define-class <verilog-module> () ())
+
+(defmodule (my-module)
+  (description "DESCRIPTION")
+  (interface
+   (output 8 result)
+   (input 8 c-clk))
+  (wire 8 test-wire)
+  (always
+   (@ (posedge i-clk))
+   (<= a 12)
+   (foo bar)))
+
+(define-syntax defmodule
+  (syntax-rules (description interface input output)
+    [(_ (description expression)
+        (interface
+         ())
+        body...)
+     ()]))
